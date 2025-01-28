@@ -7,6 +7,7 @@ import {
 import PoiMarkers from "./PoiMarkers";
 import { MyContext } from "../../context/myContext";
 import { addressToCoordinates } from "../../utils/addressToCoordinates";
+import env from "../../config/env";
 
 const MapLocation = () => {
   type Poi = {
@@ -66,7 +67,7 @@ const MapLocation = () => {
 
   return (
     <div className="items-container-map">
-      <APIProvider apiKey={"AIzaSyDGTAFKoRVbBsH6XN_FEXAoLcIksZd9jCU"}>
+      <APIProvider apiKey={env.MAPS_API_KEY}>
         <Map
           defaultZoom={13}
           defaultCenter={userLocation}
