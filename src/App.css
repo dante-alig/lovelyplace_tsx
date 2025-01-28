@@ -1212,7 +1212,12 @@ button {
   color: #907c50;
 }
 
-.layer-box {
+.insta-title {
+  text-decoration: underline;
+}
+
+.layer-box,
+.icon-box {
   color: #907c50;
 }
 

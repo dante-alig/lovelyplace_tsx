@@ -63,6 +63,7 @@ const MapLocation = () => {
     };
 
     fetchLocations();
+    console.log(env.MAPS_API_KEY);
   }, [items]);
 
   return (

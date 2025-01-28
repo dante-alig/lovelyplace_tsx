@@ -144,9 +144,7 @@ const SelectedLocation = () => {
                 icon="fa-solid fa-location-dot"
               />
             </span>
-            <Link to="#">
-              {`${selectedItem.locationAddress}, ${selectedItem.postalCode}`}
-            </Link>
+            <span>{`${selectedItem.locationAddress}, ${selectedItem.postalCode}`}</span>
           </p>
 
           {/* TODO: Extraire en composant OpeningStatus */}
@@ -156,11 +154,13 @@ const SelectedLocation = () => {
                 className="fa-layer-icon"
                 icon="fa-regular fa-clock"
               />
-              {schedule && schedule.status === 'not_found' 
+              {schedule && schedule.status === "not_found"
                 ? "Indisponible"
-                : schedule && schedule.opening_hours && schedule.opening_hours.open_now
-                  ? `Ouvert actuellement`
-                  : "Fermé actuellement"}
+                : schedule &&
+                  schedule.opening_hours &&
+                  schedule.opening_hours.open_now
+                ? `Ouvert actuellement`
+                : "Fermé actuellement"}
             </span>
           </p>
 
@@ -214,7 +214,7 @@ const SelectedLocation = () => {
                 icon="fa-solid fa-lock"
               />
             </div>
-            <div 
+            <div
               onClick={() => navigate("/premium")}
               style={{ cursor: "pointer" }}
             >
