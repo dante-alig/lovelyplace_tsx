@@ -6,6 +6,15 @@ import video1 from "../assets/videos/1.mp4";
 import video2 from "../assets/videos/2.mp4";
 import video3 from "../assets/videos/3.mp4";
 import video4 from "../assets/videos/4.mp4";
+import ct1 from "../assets/images/ct1.jpg";
+import ct4 from "../assets/images/ct4.jpg";
+import ct5 from "../assets/images/ct5.jpg";
+import ct6 from "../assets/images/ct6.jpg";
+import ct7 from "../assets/images/ct7.jpg";
+import ct9 from "../assets/images/ct9.jpg";
+import ct10 from "../assets/images/ct10.jpg";
+import ct11 from "../assets/images/ct11.jpg";
+import hook1 from "../assets/images/hook1.jpg";
 
 const Premium = () => {
   const fadeInUp = {
@@ -109,7 +118,7 @@ const Premium = () => {
       <HookItems
         title="Comment organiser une journée entière à Paris pour un premier rendez-vous inoubliable"
         content="Un premier rendez-vous peut être intimidant, mais avec un planning bien pensé, vous pouvez transformer cette journée en une expérience mémorable et magique. Voici un itinéraire complet pour une journée à Paris, mêlant détente, découverte et romantisme."
-        imageSrc="/src/assets/images/ct7.jpg"
+        imageSrc={ct7}
         animationDirection="left"
         classType="hook-item"
       />
@@ -117,7 +126,7 @@ const Premium = () => {
       <HookItems
         title="Comment choisir le bon endroit en fonction de sa personnalité ?"
         content="Choisir le lieu parfait pour un rendez-vous peut sembler difficile, surtout si vous voulez qu'il reflète les goûts et la personnalité de la personne que vous invitez. Mais avec un peu d'observation et une touche de créativité, il est possible de trouver un endroit qui correspond parfaitement à ses préférences. Voici un guide pour sélectionner le lieu idéal en fonction de différents types de personnalité."
-        imageSrc="/src/assets/images/ct6.jpg"
+        imageSrc={ct6}
         isReversed={true}
         classType="hook-item-2"
       />
@@ -125,7 +134,7 @@ const Premium = () => {
       <HookItems
         title="Top 5 des dates parfaites sous la pluie à Paris : quand le mauvais temps devient un atout"
         content="La pluie à Paris a un charme unique. Plutôt que de la laisser gâcher vos plans, pourquoi ne pas transformer un jour gris en une expérience romantique et inoubliable ? Voici cinq idées de rendez-vous à Paris qui brillent, même sous la pluie."
-        imageSrc="/src/assets/images/ct8.jpg"
+        imageSrc={ct5}
         animationDirection="left"
         classType="hook-item"
       />
@@ -133,7 +142,7 @@ const Premium = () => {
       <HookItems
         title="les meilleurs plans pour un rendez-vous romantique sans se ruiner"
         content="Paris est souvent considérée comme une ville d'élégance et de glamour, mais pas besoin de vider votre compte en banque pour vivre un moment magique à deux. La ville regorge d’endroits merveilleux pour une soirée à deux. Mais quoi de mieux qu’un petit bonus pour pimenter votre date ? Aujourd’hui, on partage avec vous une offre spéciale pour surprendre votre partenaire sans exploser votre budget."
-        imageSrc="/src/assets/images/ct10.jpg"
+        imageSrc={ct10}
         isReversed={true}
         classType="hook-item-2"
       />
@@ -141,7 +150,7 @@ const Premium = () => {
       <HookItems
         title="Les coins cachés de Paris où s’embrasser en toute intimité"
         content="Paris, la ville de l’amour, regorge de lieux iconiques pour les couples, mais saviez-vous qu’elle cache aussi des endroits plus secrets, parfaits pour un baiser loin des foules ? Si vous cherchez des lieux où vous pouvez profiter d’un moment complice avec votre partenaire en toute tranquillité, voici une sélection des meilleurs coins intimes de la capitale"
-        imageSrc="/src/assets/images/ct4.jpg"
+        imageSrc={ct4}
         animationDirection="left"
         classType="hook-item"
       />
@@ -149,7 +158,7 @@ const Premium = () => {
       <HookItems
         title="Comment transformer une simple rencontre en un moment inoubliable ?"
         content="Le premier rendez-vous est un moment décisif, une opportunité de faire bonne impression et de créer une connexion significative. Mais comment transformer une simple rencontre en un souvenir marquant qui donne envie à l’autre de vous revoir ? Voici un guide pratique pour faire de votre rendez-vous un moment inoubliable."
-        imageSrc="/src/assets/images/ct1.jpg"
+        imageSrc={ct1}
         isReversed={true}
         classType="hook-item-2"
       />
@@ -157,15 +166,15 @@ const Premium = () => {
       <HookItems
         title="La liste des bars ou soirées où le premier verre est offert"
         content="Vous pensiez qu'à Paris tout se paye (cher) ? Détrompez-vous ! La ville fait parfois preuve de générosité pour les aventuriers futés. De soirées spéciales à des happy hours malins, voici tous les bons plans pour déguster un verre gratuitement dans la capitale !"
-        imageSrc="/src/assets/images/ct9.jpg"
+        imageSrc={ct9}
         animationDirection="left"
         classType="hook-item"
       />
 
       <HookItems
         title="Et si c’était un fiasco ? Nos astuces pour sauver un premier rendez-vous qui tourne mal"
-        content="Les premiers rendez-vous peuvent parfois déraper : une blague ratée, des silences gênants, ou un manque d’alchimie... Pas de panique ! Même un début chaotique peut se transformer en belle expérience, à condition de garder son calme et d’appliquer quelques astuces simples. Prêt à sauver la soirée ? Suis le guide !"
-        imageSrc="/src/assets/images/ct5.jpg"
+        content="Les premiers rendez-vous peuvent parfois déraper : une blague ratée, des silences gênants, ou un manque d’alchimie... Pas de panique ! Mieux encore, un début chaotique peut se transformer en belle expérience, à condition de garder son calme et d’appliquer quelques astuces simples. Prête à sauver la soirée ? Suis le guide !"
+        imageSrc={ct5}
         isReversed={true}
         classType="hook-item-2"
       />
@@ -173,15 +182,15 @@ const Premium = () => {
       <HookItems
         title="Votre 3e cocktail OFFERT dans les meilleurs bars de Paris (Code promo exclusif)"
         content="Paris, la ville de l’amour et des lumières, regorge d’endroits merveilleux pour une soirée à deux. Mais quoi de mieux qu’un petit bonus pour pimenter votre date ? Aujourd’hui, on partage avec vous une offre spéciale pour surprendre votre partenaire sans exploser votre budget."
-        imageSrc="/src/assets/images/ct11.jpg"
+        imageSrc={ct11}
         animationDirection="left"
         classType="hook-item"
       />
 
       <HookItems
-        title="Les 5 bars parisiens où il y a (vraiment) le plus de filles célibataires !"
+        title="Les 5 bars parisiens où il y a (vraiment) le plus de filles celibataires !"
         content="Tout le monde n’a pas eu la chance d’avoir accès à notre précieux contenu la première fois... Mais on est sympa, et on vous offre une seconde chance ! Si Cupidon vous a un peu boudé ces derniers temps, on est là pour vous aider à rectifier le tir. Cette fois, il est peut-être temps de tourner la roue de la chance et de faire un date INCROYABLE. Et parce que Paris regorge d’endroits magiques pour les rencontres, on a décidé de vous faciliter la tâche"
-        imageSrc="/src/assets/images/hook1.jpg"
+        imageSrc={hook1}
         isReversed={true}
         classType="hook-item-2"
       />
