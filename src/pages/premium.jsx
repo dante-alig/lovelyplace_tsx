@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import HookItems from "../components/items/hookItems";
+import HookItems from "../components/items/HookItems";
 import { handleSubscription } from "../services/payment";
 
 const Premium = () => {
@@ -128,7 +128,7 @@ const Premium = () => {
 
       <HookItems
         title="les meilleurs plans pour un rendez-vous romantique sans se ruiner"
-        content="Paris est souvent considérée comme une ville d'élégance et de glamour, mais pas besoin de vider votre compte en banque pour vivre un moment magique à deux. La ville regorge de trésors cachés et d'activités à la fois romantiques et abordables. Que vous veniez tout juste de rencontrer quelqu'un ou que vous cherchiez simplement à raviver la flamme sans casser la tirelire, voici 5 idées de rendez-vous à petit budget qui feront fondre les cœurs"
+        content="Paris est souvent considérée comme une ville d'élégance et de glamour, mais pas besoin de vider votre compte en banque pour vivre un moment magique à deux. La ville regorge d’endroits merveilleux pour une soirée à deux. Mais quoi de mieux qu’un petit bonus pour pimenter votre date ? Aujourd’hui, on partage avec vous une offre spéciale pour surprendre votre partenaire sans exploser votre budget."
         imageSrc="/src/assets/images/ct10.jpg"
         isReversed={true}
         classType="hook-item-2"
