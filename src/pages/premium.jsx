@@ -2,10 +2,10 @@ import React from "react";
 import { motion } from "framer-motion";
 import HookItems from "../components/items/HookItems";
 import { handleSubscription } from "../services/payment";
-import video1 from "../assets/images/video/1.mp4";
-import video2 from "../assets/images/video/2.mp4";
-import video3 from "../assets/images/video/3.mp4";
-import video4 from "../assets/images/video/4.mp4";
+import video1 from "../assets/videos/1.mp4";
+import video2 from "../assets/videos/2.mp4";
+import video3 from "../assets/videos/3.mp4";
+import video4 from "../assets/videos/4.mp4";
 
 const Premium = () => {
   const fadeInUp = {
