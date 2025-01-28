@@ -2,6 +2,10 @@ import React from "react";
 import { motion } from "framer-motion";
 import HookItems from "../components/items/HookItems";
 import { handleSubscription } from "../services/payment";
+import video1 from "../assets/images/video/1.mp4";
+import video2 from "../assets/images/video/2.mp4";
+import video3 from "../assets/images/video/3.mp4";
+import video4 from "../assets/images/video/4.mp4";
 
 const Premium = () => {
   const fadeInUp = {
@@ -50,7 +54,7 @@ const Premium = () => {
           </div>
           <div className="advantages-block">
             <video autoPlay loop muted>
-              <source src="/src/assets/videos/4.mp4" type="video/mp4" />
+              <source src={video4} type="video/mp4" />
             </video>
           </div>
         </motion.div>
@@ -64,7 +68,7 @@ const Premium = () => {
           </div>
           <div className="advantages-block">
             <video autoPlay loop muted>
-              <source src="/src/assets/videos/2.mp4" type="video/mp4" />
+              <source src={video2} type="video/mp4" />
             </video>
           </div>
         </motion.div>
@@ -75,7 +79,7 @@ const Premium = () => {
           </div>
           <div className="advantages-block">
             <video autoPlay loop muted>
-              <source src="/src/assets/videos/3.mp4" type="video/mp4" />
+              <source src={video3} type="video/mp4" />
             </video>
           </div>
         </motion.div>
@@ -86,7 +90,7 @@ const Premium = () => {
           </div>
           <div className="advantages-block">
             <video autoPlay loop muted>
-              <source src="/src/assets/videos/1.mp4" type="video/mp4" />
+              <source src={video1} type="video/mp4" />
             </video>
           </div>
         </motion.div>
