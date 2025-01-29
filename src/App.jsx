@@ -20,7 +20,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import "./App.css";
 import Home from "./pages/home";
-import Form from "./pages/Form";
+import Form from "./pages/form";
 import Header from "./components/layout/Header";
 import SelectedLocation from "./pages/selectedLocation";
 import Premium from "./pages/premium";
