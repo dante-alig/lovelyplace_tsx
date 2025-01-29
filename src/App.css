@@ -791,6 +791,11 @@ p {
   font-weight: 600;
 }
 
+.item-price {
+  font-weight: 600;
+  font-style: italic;
+}
+
 .fa-star {
   font-size: 12px;
   margin-right: 5px;

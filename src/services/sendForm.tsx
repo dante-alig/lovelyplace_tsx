@@ -261,7 +261,7 @@ export const updateDescription = async (
 ): Promise<LocationResponse> => {
   try {
     const response = await axios.put<LocationResponse>(
-      `${BASE_URL}/items/${idLocation}/description`,
+      `${BASE_URL}/location/${idLocation}/description`,
       {
         locationDescription,
       }

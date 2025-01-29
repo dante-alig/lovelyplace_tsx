@@ -1,7 +1,7 @@
-import axios from 'axios';
-import React from 'react';
+import axios from "axios";
 
-const BASE_URL = "https://site--portfolio-lovelyplace-backend--dqd24mcv82s5.code.run";
+const BASE_URL =
+  "https://site--portfolio-lovelyplace-backend--dqd24mcv82s5.code.run";
 
 interface GeocodingResponse {
   coordinates: {
@@ -22,17 +22,23 @@ export const addressToCoordinates = async (
   id?: string
 ): Promise<GeocodingResponse | null> => {
   try {
-    const response = await axios.post<GeocodingResponse>(`${BASE_URL}/geocode`, {
-      address,
-      key,
-      locationDescription,
-      photo,
-      id
-    });
+    const response = await axios.post<GeocodingResponse>(
+      `${BASE_URL}/geocode`,
+      {
+        address,
+        key,
+        locationDescription,
+        photo,
+        id,
+      }
+    );
 
     return response.data;
   } catch (error) {
-    console.error('Erreur lors de la géolocalisation :', error instanceof Error ? error.message : 'Unknown error');
+    console.error(
+      "Erreur lors de la géolocalisation :",
+      error instanceof Error ? error.message : "Unknown error"
+    );
     return null;
   }
 };
