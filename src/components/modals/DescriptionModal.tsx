@@ -9,11 +9,6 @@ interface DescriptionModalProps {
   onDescriptionUpdate: (description: string) => void;
 }
 
-interface UpdateDescriptionResponse {
-  locationDescription: string;
-  [key: string]: any;
-}
-
 const DescriptionModal: React.FC<DescriptionModalProps> = ({
   isOpen,
   onClose,
@@ -27,7 +22,7 @@ const DescriptionModal: React.FC<DescriptionModalProps> = ({
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
     try {
-      const result = await updateDescription(locationId, description);
+      await updateDescription(locationId, description);
       onDescriptionUpdate(description);  
       setError("");
       onClose();

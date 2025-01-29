@@ -5,11 +5,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 import { motion } from "framer-motion";
 import logo from "../../assets/images/lovelyplaceparis.png";
-import { logout, isAuthenticated, login } from "../../services/auth";
+import { logout, isAuthenticated } from "../../services/auth";
 import Login from "../modals/Login";
 import { handleSearchChange } from "../../utils/handleSearch";
 
-type CategoryType = 'drink' | 'eat' | 'fun' | 'filter-nearby';
+type CategoryType = "drink" | "eat" | "fun" | "filter-nearby";
 
 interface FilterParams {
   filters?: string[];
@@ -32,9 +32,6 @@ const Header: React.FC = () => {
   const { setItems, setCategorieItems, setAdminLogin, setFilterParams } =
     useContext<MyContextType>(MyContext);
 
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-  const [error, setError] = useState<string>("");
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 
   useEffect(() => {
@@ -48,40 +45,14 @@ const Header: React.FC = () => {
       handleLogout();
     } else {
       setShowModal(!showModal);
-      if (showModal) {
-        setEmail("");
-        setPassword("");
-        setError("");
-      }
     }
   };
 
-  const closeModalOnClickOutside = (e: React.MouseEvent<HTMLDivElement>): void => {
+  const closeModalOnClickOutside = (
+    e: React.MouseEvent<HTMLDivElement>
+  ): void => {
     if ((e.target as HTMLDivElement).className === "modal-overlay") {
       setShowModal(false);
-      setEmail("");
-      setPassword("");
-      setError("");
-    }
-  };
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
-    e.preventDefault();
-    setError("");
-
-    try {
-      await login(email, password);
-      setIsLoggedIn(true);
-      setAdminLogin(true);
-      setShowModal(false);
-      setEmail("");
-      setPassword("");
-    } catch (error) {
-      if (error instanceof Error) {
-        setError(error.message);
-      } else {
-        setError("Une erreur est survenue");
-      }
     }
   };
 
@@ -128,7 +99,11 @@ const Header: React.FC = () => {
               type="text"
               placeholder="Rechercher un lieu ou une activité..."
               value={searchQuery}
-              onChange={handleSearchChange(setSearchQuery, setItems, setCategorieItems)}
+              onChange={handleSearchChange(
+                setSearchQuery,
+                setItems,
+                setCategorieItems
+              )}
               className="header-search-input"
             />
           </div>

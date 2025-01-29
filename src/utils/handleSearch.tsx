@@ -2,6 +2,8 @@ import React from 'react';
 import { searchLocations } from "../services/sendForm";
 import { fetchDataItems } from "../services/fetchDataItems";
 
+type CategoryType = "drink" | "eat" | "fun" | "filter-nearby";
+
 type LocationItem = any; // TODO: Define proper type based on your data structure
 
 const formatSearchQuery = (value: string): string => {
@@ -20,7 +22,7 @@ export const handleSearch = async (
   value: string,
   setSearchQuery: React.Dispatch<React.SetStateAction<string>>,
   setItems: React.Dispatch<React.SetStateAction<LocationItem[]>>,
-  setCategorieItems: React.Dispatch<React.SetStateAction<string>>
+  setCategorieItems: React.Dispatch<React.SetStateAction<CategoryType>>
 ): Promise<void> => {
   setSearchQuery(value);
 
@@ -47,7 +49,7 @@ export const handleSearch = async (
 export const handleSearchChange = (
   setSearchQuery: React.Dispatch<React.SetStateAction<string>>,
   setItems: React.Dispatch<React.SetStateAction<LocationItem[]>>,
-  setCategorieItems: React.Dispatch<React.SetStateAction<string>>
+  setCategorieItems: React.Dispatch<React.SetStateAction<CategoryType>>
 ) => {
   return async (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;

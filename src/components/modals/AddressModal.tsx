@@ -10,12 +10,6 @@ interface AddressModalProps {
   onAddressUpdate: (address: string, postalCode: string) => void;
 }
 
-interface UpdateAddressResponse {
-  locationAddress: string;
-  postalCode: string;
-  [key: string]: any;
-}
-
 const AddressModal: React.FC<AddressModalProps> = ({
   isOpen,
   onClose,
@@ -28,11 +22,13 @@ const AddressModal: React.FC<AddressModalProps> = ({
   const [postalCode, setPostalCode] = useState<string>(currentPostalCode || "");
   const [error, setError] = useState<string>("");
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
+  const handleSubmit = async (
+    e: React.FormEvent<HTMLFormElement>
+  ): Promise<void> => {
     e.preventDefault();
     try {
-      const result = await updateAddress(locationId, postalCode, address);
-      // Pass the updated values directly since we know what we sent
+      await updateAddress(locationId, postalCode, address);
+
       onAddressUpdate(address, postalCode);
       setError("");
       onClose();
@@ -65,7 +61,9 @@ const AddressModal: React.FC<AddressModalProps> = ({
                 id="address"
                 type="text"
                 value={address}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setAddress(e.target.value)}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  setAddress(e.target.value)
+                }
                 placeholder="Entrez l'adresse"
                 className="form-input"
               />
@@ -77,7 +75,9 @@ const AddressModal: React.FC<AddressModalProps> = ({
                 id="postalCode"
                 type="text"
                 value={postalCode}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPostalCode(e.target.value)}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  setPostalCode(e.target.value)
+                }
                 placeholder="Code postal (5 chiffres)"
                 className="form-input"
               />

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { updateFilters } from "../../services/sendForm";
 
-type FilterAction = 'add' | 'remove';
+type FilterAction = "add" | "remove";
 
 interface FiltersModalProps {
   isOpen: boolean;
@@ -34,11 +34,9 @@ const FiltersModal: React.FC<FiltersModalProps> = ({
     }
 
     try {
-      const updatedFilters = await updateFilters(
-        locationId,
-        "add",
-        { [filterKey]: [filterValue] }
-      ) as UpdateFiltersResponse;
+      const updatedFilters = (await updateFilters(locationId, "add" as FilterAction, {
+        [filterKey]: [filterValue],
+      })) as UpdateFiltersResponse;
       onFiltersUpdate(updatedFilters.filters);
       setFilterKey("");
       setFilterValue("");
@@ -54,11 +52,9 @@ const FiltersModal: React.FC<FiltersModalProps> = ({
 
   const handleRemoveFilter = async (filterString: string): Promise<void> => {
     try {
-      const updatedFilters = await updateFilters(
-        locationId,
-        "remove",
-        { filters: [filterString] }
-      ) as UpdateFiltersResponse;
+      const updatedFilters = (await updateFilters(locationId, "remove" as FilterAction, {
+        filters: [filterString],
+      })) as UpdateFiltersResponse;
       onFiltersUpdate(updatedFilters.filters);
       setError("");
     } catch (error) {
@@ -94,7 +90,9 @@ const FiltersModal: React.FC<FiltersModalProps> = ({
               <input
                 type="text"
                 value={filterKey}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFilterKey(e.target.value)}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  setFilterKey(e.target.value)
+                }
                 onKeyPress={handleKeyPress}
                 placeholder="Clé du filtre (ex: Décoration)"
                 className="filter-input"
@@ -102,7 +100,9 @@ const FiltersModal: React.FC<FiltersModalProps> = ({
               <input
                 type="text"
                 value={filterValue}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFilterValue(e.target.value)}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  setFilterValue(e.target.value)
+                }
                 onKeyPress={handleKeyPress}
                 placeholder="Valeur du filtre (ex: Cosy)"
                 className="filter-input"

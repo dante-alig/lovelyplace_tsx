@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { updateKeywords } from "../../services/sendForm";
 
-type KeywordAction = 'add' | 'remove';
-
 interface KeywordsModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -11,9 +9,7 @@ interface KeywordsModalProps {
   onKeywordsUpdate: (keywords: string[]) => void;
 }
 
-interface LocationResponse {
-  // assuming this interface is defined elsewhere in your codebase
-}
+interface LocationResponse {}
 
 interface UpdateKeywordsResponse extends LocationResponse {
   keywords: string[];
@@ -36,18 +32,16 @@ const KeywordsModal: React.FC<KeywordsModalProps> = ({
     }
 
     try {
-      const response = await updateKeywords(
-        locationId,
-        "add",
-        [newKeyword]
-      );
-      // response.keywords is available through the index signature
+      const response = await updateKeywords(locationId, "add", [newKeyword]);
+
       if (Array.isArray(response.keywords)) {
         onKeywordsUpdate(response.keywords);
         setNewKeyword("");
         setError("");
       } else {
-        setError("Une erreur est survenue lors de la mise à jour des mots-clés");
+        setError(
+          "Une erreur est survenue lors de la mise à jour des mots-clés"
+        );
       }
     } catch (error) {
       if (error instanceof Error) {
@@ -60,12 +54,10 @@ const KeywordsModal: React.FC<KeywordsModalProps> = ({
 
   const handleRemoveKeyword = async (keyword: string): Promise<void> => {
     try {
-      const response = await updateKeywords(
-        locationId,
-        "remove",
-        [keyword]
-      ) as UpdateKeywordsResponse;
-      // LocationResponse contains keywords in its array properties
+      const response = (await updateKeywords(locationId, "remove", [
+        keyword,
+      ])) as UpdateKeywordsResponse;
+
       onKeywordsUpdate(response.keywords);
     } catch (error) {
       if (error instanceof Error) {
@@ -93,7 +85,9 @@ const KeywordsModal: React.FC<KeywordsModalProps> = ({
             <input
               type="text"
               value={newKeyword}
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) => setNewKeyword(e.target.value)}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                setNewKeyword(e.target.value)
+              }
               placeholder="Nouveau mot-clé"
               className="keyword-input"
             />

@@ -13,6 +13,7 @@ import { getPlaceSchedule } from "../services/askSchedule";
 import { formatInstagramUsername } from "../utils/formatInstagramUsername";
 import OpeningStatus from "../components/selectedLocation/OpeningStatus";
 import { handleFunc } from "../utils/handleFunc";
+import AdminEditButtons from "../components/selectedLocation/AdminEditButtons";
 
 const SelectedLocation = () => {
   const { idLocation } = useParams();
