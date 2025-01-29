@@ -1,49 +1,46 @@
-import { useState, useEffect, ChangeEvent, FormEvent } from "react";
+import { useState, useEffect } from "react";
 import { sendForm } from "../services/sendForm";
 import { filterCategories } from "../utils/filterCategories";
 
-type PlaceCategory = "prendre_un_verre" | "manger_ensemble" | "partager_une_activité" | "";
-type PriceRange = "7€" | "10€" | "15€" | "20€" | "25€" | "35€ et +" | "";
-
-const Form: React.FC = () => {
+const Form = () => {
   // NOM DU LIEU
-  const [locationName, setLocationName] = useState<string>("");
+  const [locationName, setLocationName] = useState("");
 
   // ADRESSE DU LIEU
-  const [locationAddress, setLocationAddress] = useState<string>("");
+  const [locationAddress, setLocationAddress] = useState("");
 
   // DESCRIPTION DU LIEU
-  const [locationDescription, setLocationDescription] = useState<string>("");
+  const [locationDescription, setLocationDescription] = useState("");
 
   // ASTUCES (4 astuces maximum)
-  const [tips, setTips] = useState<string[]>(["", "", "", ""]);
+  const [tips, setTips] = useState(["", "", "", ""]);
 
   // NOM DU RESEAU SOCIAL (INSTAGRAM PAR EXEMPLE)
-  const [socialmedia, setSocialmedia] = useState<string>("");
+  const [socialmedia, setSocialmedia] = useState("");
 
   // PHOTOS DU LIEU
-  const [photos, setPhotos] = useState<File[]>([]);
+  const [photos, setPhotos] = useState([]);
 
   // APERÇUS DES PHOTOS
-  const [photoPreviews, setPhotoPreviews] = useState<string[]>([]);
+  const [photoPreviews, setPhotoPreviews] = useState([]);
 
   // FOURCHETTE DE PRIX
-  const [priceRange, setPriceRange] = useState<PriceRange>("");
+  const [priceRange, setPriceRange] = useState("");
 
   // CATEGORIE DU LIEU (VERRE, MANGER, ACTIVITE)
-  const [placeCategory, setPlaceCategory] = useState<PlaceCategory>("");
+  const [placeCategory, setPlaceCategory] = useState("");
 
   // MOTS-CLES POUR LE LIEU
-  const [keywords, setKeywords] = useState<string[]>([]); // Mots-clés ajoutés
-  const [newKeyword, setNewKeyword] = useState<string>("");
+  const [keywords, setKeywords] = useState([]); // Mots-clés ajoutés
+  const [newKeyword, setNewKeyword] = useState(""); // Nouveau mot-clé en cours de saisie
 
-  const [filters, setFilters] = useState<string[]>([]);
+  const [filters, setFilters] = useState([]);
 
   // CODE POSTAL
-  const [postalCode, setPostalCode] = useState<string>("");
+  const [postalCode, setPostalCode] = useState("");
 
   // NOTE DU LIEU
-  const [rating, setRating] = useState<string>("");
+  const [rating, setRating] = useState("");
 
   useEffect(() => {
     // LOG DES VALEURS D'ETAT POUR LE DEBUGGING
@@ -67,7 +64,7 @@ const Form: React.FC = () => {
   ]);
 
   // GESTION DE LA MODIFICATION DES ASTUCES
-  const handleTipsChange = (index: number, value: string): void => {
+  const handleTipsChange = (index, value) => {
     setTips((prevTips) => {
       const updatedTips = [...prevTips];
       updatedTips[index] = value;
@@ -76,18 +73,17 @@ const Form: React.FC = () => {
   };
 
   // GESTION DE L'AJOUT DE PHOTOS ET DE LEUR APERCU
-  const handlePhotosChange = (event: ChangeEvent<HTMLInputElement>): void => {
-    if (event.target.files) {
-      const files = Array.from(event.target.files);
-      setPhotos((prevPhotos) => [...prevPhotos, ...files]);
+  const handlePhotosChange = (event) => {
+    const files = Array.from(event.target.files);
 
-      const previews = files.map((file) => URL.createObjectURL(file));
-      setPhotoPreviews((prevPreviews) => [...prevPreviews, ...previews]);
-    }
+    setPhotos((prevPhotos) => [...prevPhotos, ...files]);
+
+    const previews = files.map((file) => URL.createObjectURL(file));
+    setPhotoPreviews((prevPreviews) => [...prevPreviews, ...previews]);
   };
 
   // AJOUT D'UN MOT-CLE
-  const handleAddKeyword = (): void => {
+  const handleAddKeyword = () => {
     if (newKeyword.trim()) {
       setKeywords([...keywords, newKeyword.trim()]);
       setNewKeyword("");
@@ -95,14 +91,14 @@ const Form: React.FC = () => {
   };
 
   // SUPPRESSION D'UN MOT-CLE
-  const handleRemoveKeyword = (index: number): void => {
+  const handleRemoveKeyword = (index) => {
     setKeywords((prevKeywords) => prevKeywords.filter((_, i) => i !== index));
   };
 
   // SOUMISSION DU FORMULAIRE
-  const handleSubmit = (event: FormEvent<HTMLFormElement>): void => {
+  const handleSubmit = (event) => {
     event.preventDefault();
-    sendForm(
+    sendForm({
       locationName,
       locationAddress,
       locationDescription,
@@ -115,10 +111,10 @@ const Form: React.FC = () => {
       postalCode,
       placeCategory,
       rating
-    );
+    });
   };
 
-  const handleFilterChange = (category: string, option: string): void => {
+  const handleFilterChange = (category, option) => {
     setFilters((prevFilters) => {
       const filterKey = `${category}:${option}`;
       return prevFilters.includes(filterKey)
@@ -137,9 +133,7 @@ const Form: React.FC = () => {
             <select
               id="placeCategory"
               value={placeCategory}
-              onChange={(event: ChangeEvent<HTMLSelectElement>) =>
-                setPlaceCategory(event.target.value as PlaceCategory)
-              }
+              onChange={(event) => setPlaceCategory(event.target.value)}
             >
               <option value="">Sélectionner une catégorie</option>
               <option value="prendre_un_verre">Prendre un verre</option>
@@ -157,9 +151,7 @@ const Form: React.FC = () => {
               type="text"
               placeholder="Nom du lieu"
               value={locationName}
-              onChange={(event: ChangeEvent<HTMLInputElement>) =>
-                setLocationName(event.target.value)
-              }
+              onChange={(event) => setLocationName(event.target.value)}
             />
           </div>
 
@@ -193,9 +185,7 @@ const Form: React.FC = () => {
               type="text"
               placeholder="Adresse du lieu"
               value={locationAddress}
-              onChange={(event: ChangeEvent<HTMLInputElement>) =>
-                setLocationAddress(event.target.value)
-              }
+              onChange={(event) => setLocationAddress(event.target.value)}
             />
           </div>
 
@@ -206,9 +196,7 @@ const Form: React.FC = () => {
               type="text"
               placeholder="Code postal"
               value={postalCode}
-              onChange={(event: ChangeEvent<HTMLInputElement>) =>
-                setPostalCode(event.target.value)
-              }
+              onChange={(event) => setPostalCode(event.target.value)}
             />
           </div>
 
@@ -222,9 +210,7 @@ const Form: React.FC = () => {
               min="0"
               placeholder="Note du lieu"
               value={rating}
-              onChange={(event: ChangeEvent<HTMLInputElement>) =>
-                setRating(event.target.value)
-              }
+              onChange={(event) => setRating(event.target.value)}
             />
           </div>
 
@@ -235,9 +221,7 @@ const Form: React.FC = () => {
               type="text"
               placeholder="Description du lieu"
               value={locationDescription}
-              onChange={(event: ChangeEvent<HTMLInputElement>) =>
-                setLocationDescription(event.target.value)
-              }
+              onChange={(event) => setLocationDescription(event.target.value)}
             />
           </div>
 
@@ -247,9 +231,7 @@ const Form: React.FC = () => {
             <select
               id="priceRange"
               value={priceRange}
-              onChange={(event: ChangeEvent<HTMLSelectElement>) =>
-                setPriceRange(event.target.value as PriceRange)
-              }
+              onChange={(event) => setPriceRange(event.target.value)}
             >
               <option value="">Sélectionner</option>
               <option value="7€">7€</option>
@@ -257,7 +239,7 @@ const Form: React.FC = () => {
               <option value="15€">15€</option>
               <option value="20€">20€</option>
               <option value="25€">25€</option>
-              <option value="35€ et +">35€ et +</option>
+              <option value="35€ et +">35€ et + </option>
             </select>
           </div>
 
@@ -268,7 +250,7 @@ const Form: React.FC = () => {
                 type="text"
                 placeholder={`Astuce ${index + 1}`}
                 value={tips[index] || ""}
-                onChange={(event: ChangeEvent<HTMLInputElement>) =>
+                onChange={(event) =>
                   handleTipsChange(index, event.target.value)
                 }
               />
@@ -282,9 +264,7 @@ const Form: React.FC = () => {
               type="text"
               placeholder="Instagram"
               value={socialmedia}
-              onChange={(event: ChangeEvent<HTMLInputElement>) =>
-                setSocialmedia(event.target.value)
-              }
+              onChange={(event) => setSocialmedia(event.target.value)}
             />
           </div>
 
@@ -295,9 +275,7 @@ const Form: React.FC = () => {
               type="text"
               placeholder="Ajouter un mot-clé"
               value={newKeyword}
-              onChange={(event: ChangeEvent<HTMLInputElement>) =>
-                setNewKeyword(event.target.value)
-              }
+              onChange={(event) => setNewKeyword(event.target.value)}
             />
             <button type="button" onClick={handleAddKeyword}>
               Ajouter
@@ -323,7 +301,7 @@ const Form: React.FC = () => {
             {Object.entries(filterCategories).map(([category, options]) => (
               <div key={category} className="filter-category">
                 <h4>{category}</h4>
-                {options.map((option: string, index: number) => (
+                {options.map((option, index) => (
                   <div key={index} className="filter-option">
                     <input
                       type="checkbox"

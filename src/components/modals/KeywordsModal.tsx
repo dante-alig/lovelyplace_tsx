@@ -11,9 +11,12 @@ interface KeywordsModalProps {
   onKeywordsUpdate: (keywords: string[]) => void;
 }
 
-interface UpdateKeywordsResponse {
+interface LocationResponse {
+  // assuming this interface is defined elsewhere in your codebase
+}
+
+interface UpdateKeywordsResponse extends LocationResponse {
   keywords: string[];
-  [key: string]: any;
 }
 
 const KeywordsModal: React.FC<KeywordsModalProps> = ({
@@ -33,14 +36,19 @@ const KeywordsModal: React.FC<KeywordsModalProps> = ({
     }
 
     try {
-      const updatedKeywords = await updateKeywords(
+      const response = await updateKeywords(
         locationId,
         "add",
         [newKeyword]
-      ) as UpdateKeywordsResponse;
-      onKeywordsUpdate(updatedKeywords.keywords);
-      setNewKeyword("");
-      setError("");
+      );
+      // response.keywords is available through the index signature
+      if (Array.isArray(response.keywords)) {
+        onKeywordsUpdate(response.keywords);
+        setNewKeyword("");
+        setError("");
+      } else {
+        setError("Une erreur est survenue lors de la mise à jour des mots-clés");
+      }
     } catch (error) {
       if (error instanceof Error) {
         setError(error.message);
@@ -52,12 +60,13 @@ const KeywordsModal: React.FC<KeywordsModalProps> = ({
 
   const handleRemoveKeyword = async (keyword: string): Promise<void> => {
     try {
-      const updatedKeywords = await updateKeywords(
+      const response = await updateKeywords(
         locationId,
         "remove",
         [keyword]
       ) as UpdateKeywordsResponse;
-      onKeywordsUpdate(updatedKeywords.keywords);
+      // LocationResponse contains keywords in its array properties
+      onKeywordsUpdate(response.keywords);
     } catch (error) {
       if (error instanceof Error) {
         setError(error.message);

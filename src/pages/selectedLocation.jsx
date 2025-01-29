@@ -14,14 +14,6 @@ import { formatInstagramUsername } from "../utils/formatInstagramUsername";
 const SelectedLocation = () => {
   const { idLocation } = useParams();
 
-  const {
-    selectedItem = {},
-    setSelectedItem,
-    adminLogin,
-    schedule,
-    setSchedule,
-  } = useContext(MyContext) || {};
-
   const [showModal, setShowModal] = useState(false);
   const [isKeywordsModalOpen, setIsKeywordsModalOpen] = useState(false);
   const [isFiltersModalOpen, setIsFiltersModalOpen] = useState(false);
@@ -30,6 +22,14 @@ const SelectedLocation = () => {
 
   const [selectedFile, setSelectedFile] = useState(null);
   const [previewImage, setPreviewImage] = useState(null);
+
+  const context = useContext(MyContext);
+  if (!context) {
+    return <div>Chargement...</div>;
+  }
+
+  const { selectedItem, setSelectedItem, adminLogin, schedule, setSchedule } =
+    context;
 
   const navigate = useNavigate();
 
@@ -108,20 +108,10 @@ const SelectedLocation = () => {
         <div className="about">
           {/* TODO: Extraire en composant AdminEditButtons */}
           {adminLogin && (
-            <div>
-              <div
-                className="editkeywords"
-                onClick={() => setIsKeywordsModalOpen(true)}
-              >
-                éditer les mots clés
-              </div>
-              <div
-                className="editkeywords"
-                onClick={() => setIsFiltersModalOpen(true)}
-              >
-                éditer les filtres
-              </div>
-            </div>
+            <AdminEditButtons
+              setIsKeywordsModalOpen={setIsKeywordsModalOpen}
+              setIsFiltersModalOpen={setIsFiltersModalOpen}
+            />
           )}
 
           {/* TODO: Extraire en composant LocationHeader */}

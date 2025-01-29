@@ -27,8 +27,8 @@ const DescriptionModal: React.FC<DescriptionModalProps> = ({
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
     try {
-      const result = await updateDescription(locationId, description) as UpdateDescriptionResponse;
-      onDescriptionUpdate(result.locationDescription);
+      const result = await updateDescription(locationId, description);
+      onDescriptionUpdate(description);  
       setError("");
       onClose();
     } catch (error) {

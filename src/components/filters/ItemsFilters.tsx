@@ -1,24 +1,11 @@
 import React, { useState, useEffect } from "react";
-
-type CategoryType = 'eat' | 'drink' | 'fun';
-
-interface FilterData {
-  id: number;
-  name: string;
-  filterCategorieKey: string;
-  filterCategorieValue: string;
-  categorie: CategoryType;
-}
-
-interface FilterParams {
-  filters: string[];
-}
+import { CategoryType, FilterParams, FilterData } from '../../types/filters';
 
 interface ItemsFiltersProps {
   filterData: FilterData;
   setFilterParams: React.Dispatch<React.SetStateAction<FilterParams | null>>;
-  buttonActiv: number | string;
-  setButtonActiv: React.Dispatch<React.SetStateAction<number | string>>;
+  buttonActiv: number[];
+  setButtonActiv: React.Dispatch<React.SetStateAction<number[]>>;
   numberTab: number;
   setCategorieItems: React.Dispatch<React.SetStateAction<CategoryType>>;
 }
@@ -26,7 +13,7 @@ interface ItemsFiltersProps {
 const ItemsFilters: React.FC<ItemsFiltersProps> = ({
   filterData,
   setFilterParams,
-  buttonActiv,
+  buttonActiv = [],
   setButtonActiv,
   numberTab,
   setCategorieItems,
@@ -35,20 +22,20 @@ const ItemsFilters: React.FC<ItemsFiltersProps> = ({
 
   useEffect(() => {
     if (filterData.categorie === "eat" || filterData.categorie === "drink") {
-      setButtonActiv("");
+      setButtonActiv([]);
     }
   }, [filterData.categorie, setButtonActiv]);
 
   return (
     <div
       className={
-        buttonActiv === numberTab
+        Array.isArray(buttonActiv) && buttonActiv.includes(numberTab)
           ? "itemFilters-container-hover"
           : "itemFilters-container"
       }
       onClick={() => {
         if (activ) {
-          setButtonActiv(numberTab);
+          setButtonActiv(Array.isArray(buttonActiv) ? [...buttonActiv, numberTab] : [numberTab]);
           setActiv(false);
           setFilterParams({
             filters: [
@@ -57,7 +44,7 @@ const ItemsFilters: React.FC<ItemsFiltersProps> = ({
           });
           setCategorieItems(filterData.categorie);
         } else {
-          setButtonActiv("");
+          setButtonActiv(buttonActiv.filter((id) => id !== numberTab));
           setActiv(true);
           setFilterParams(null);
         }

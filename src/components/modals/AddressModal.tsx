@@ -31,8 +31,9 @@ const AddressModal: React.FC<AddressModalProps> = ({
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
     try {
-      const result = await updateAddress(locationId, postalCode, address) as UpdateAddressResponse;
-      onAddressUpdate(result.locationAddress, result.postalCode);
+      const result = await updateAddress(locationId, postalCode, address);
+      // Pass the updated values directly since we know what we sent
+      onAddressUpdate(address, postalCode);
       setError("");
       onClose();
     } catch (error) {

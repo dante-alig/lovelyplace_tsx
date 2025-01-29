@@ -13,6 +13,10 @@ interface HookItemsProps {
 }
 
 interface SlideAnimation {
+  [key: string]: {
+    opacity: number;
+    x: number;
+  };
   hidden: {
     opacity: number;
     x: number;

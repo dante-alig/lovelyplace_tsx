@@ -22,6 +22,8 @@ interface LocationData {
 interface LocationResponse {
   _id: string;
   photos: string[];
+  filters: string[];
+  keywords: string[];
   [key: string]: any;
 }
 

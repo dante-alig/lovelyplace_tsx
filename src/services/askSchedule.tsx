@@ -1,10 +1,10 @@
-import React from 'react';
+import React from "react";
 import axios, { AxiosError } from "axios";
 import { formatAddressForSchedule } from "../utils/adressForSchedule";
 
 interface Schedule {
-  status?: 'not_found';
-  [key: string]: any; // À remplacer par la structure exacte de vos données d'horaires
+  status?: "not_found";
+  [key: string]: any;
 }
 
 type SetScheduleFunction = React.Dispatch<React.SetStateAction<Schedule>>;
@@ -41,14 +41,14 @@ export const getPlaceSchedule = async (
     const axiosError = error as AxiosError;
     if (axiosError.response) {
       if (axiosError.response.status === 404) {
-        const notFoundSchedule: Schedule = { status: 'not_found' };
+        const notFoundSchedule: Schedule = { status: "not_found" };
         setSchedule(notFoundSchedule);
         return notFoundSchedule;
       }
       throw new Error(
         (axiosError.response.data as any).error ||
-        (axiosError.response.data as any).message ||
-        "Erreur lors de la récupération des horaires"
+          (axiosError.response.data as any).message ||
+          "Erreur lors de la récupération des horaires"
       );
     } else if (axiosError.request) {
       throw new Error("Pas de réponse du serveur");

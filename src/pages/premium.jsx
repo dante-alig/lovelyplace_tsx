@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import HookItems from "../components/items/HookItems";
+import Advantage from "../components/premium/Advantage";
 import { handleSubscription } from "../services/payment";
 import video1 from "../assets/videos/1.mp4";
 import video2 from "../assets/videos/2.mp4";
@@ -53,56 +54,30 @@ const Premium = () => {
         initial="hidden"
         animate="visible"
       >
-        <motion.div className="advantages" variants={fadeInUp}>
-          <div className="advantages-infos">
-            <h5>Superpouvoirs</h5>
-            <p>
-              Des conseils d’experts pour séduire avec confiance et
-              authenticité.
-            </p>
-          </div>
-          <div className="advantages-block">
-            <video autoPlay loop muted>
-              <source src={video4} type="video/mp4" />
-            </video>
-          </div>
-        </motion.div>
-        <motion.div className="advantages" variants={fadeInUp}>
-          <div className="advantages-infos">
-            <h5>Planification</h5>
-            <p>
-              Des outils stratégiques pour planifier vos rendez-vous sans
-              stress.
-            </p>
-          </div>
-          <div className="advantages-block">
-            <video autoPlay loop muted>
-              <source src={video2} type="video/mp4" />
-            </video>
-          </div>
-        </motion.div>
-        <motion.div className="advantages" variants={fadeInUp}>
-          <div className="advantages-infos">
-            <h5>Verres gratuit</h5>
-            <p>Bénéficiez de réductions exclusives sur vos consommations.</p>
-          </div>
-          <div className="advantages-block">
-            <video autoPlay loop muted>
-              <source src={video3} type="video/mp4" />
-            </video>
-          </div>
-        </motion.div>
-        <motion.div className="advantages" variants={fadeInUp}>
-          <div className="advantages-infos">
-            <h5>Cadeaux</h5>
-            <p>Une nouvelle surprise chaque mois dans votre espace.</p>
-          </div>
-          <div className="advantages-block">
-            <video autoPlay loop muted>
-              <source src={video1} type="video/mp4" />
-            </video>
-          </div>
-        </motion.div>
+        <Advantage
+          title="Superpouvoirs"
+          description="Des conseils d'experts pour séduire avec confiance et authenticité."
+          videoSrc={video4}
+          fadeInUp={fadeInUp}
+        />
+        <Advantage
+          title="Planification"
+          description="Des outils stratégiques pour planifier vos rendez-vous sans stress."
+          videoSrc={video2}
+          fadeInUp={fadeInUp}
+        />
+        <Advantage
+          title="Verres gratuit"
+          description="Bénéficiez de réductions exclusives sur vos consommations."
+          videoSrc={video3}
+          fadeInUp={fadeInUp}
+        />
+        <Advantage
+          title="Cadeaux"
+          description="Une nouvelle surprise chaque mois dans votre espace."
+          videoSrc={video1}
+          fadeInUp={fadeInUp}
+        />
       </motion.div>
       <motion.div
         className="premium-hook"

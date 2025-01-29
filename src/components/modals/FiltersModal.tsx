@@ -33,12 +33,11 @@ const FiltersModal: React.FC<FiltersModalProps> = ({
       return;
     }
 
-    const filterString = `${filterKey}:${filterValue}`;
     try {
       const updatedFilters = await updateFilters(
         locationId,
         "add",
-        [filterString]
+        { [filterKey]: [filterValue] }
       ) as UpdateFiltersResponse;
       onFiltersUpdate(updatedFilters.filters);
       setFilterKey("");
@@ -58,7 +57,7 @@ const FiltersModal: React.FC<FiltersModalProps> = ({
       const updatedFilters = await updateFilters(
         locationId,
         "remove",
-        [filterString]
+        { filters: [filterString] }
       ) as UpdateFiltersResponse;
       onFiltersUpdate(updatedFilters.filters);
       setError("");

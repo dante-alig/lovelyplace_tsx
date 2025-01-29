@@ -1,22 +1,12 @@
 import React, { useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faAngleLeft,
-  faAngleRight,
-  faMap,
-  faSliders,
-} from "@fortawesome/free-solid-svg-icons";
+import { faAngleLeft, faAngleRight, faMap, faSliders } from "@fortawesome/free-solid-svg-icons";
 import ItemsFilters from "./ItemsFilters";
+import { CategoryType, FilterParams } from '../../types/filters';
 import { selecItemsFiltersData } from "../../utils/selecItemsFiltersData";
 
-type CategoryType = 'drink' | 'eat' | 'fun';
-
-interface FilterParams {
-  [key: string]: string | string[];
-}
-
 interface FiltersBarProps {
-  setFilterParams: React.Dispatch<React.SetStateAction<FilterParams>>;
+  setFilterParams: React.Dispatch<React.SetStateAction<FilterParams | null>>;
   setButtonActiv: React.Dispatch<React.SetStateAction<number[]>>;
   buttonActiv: number[];
   setCategorieItems: React.Dispatch<React.SetStateAction<CategoryType>>;

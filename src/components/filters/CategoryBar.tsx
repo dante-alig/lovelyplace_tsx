@@ -5,6 +5,7 @@ import {
   faMartiniGlass,
   faUtensils,
   faTicket,
+  faLock,
 } from "@fortawesome/free-solid-svg-icons";
 
 type CategoryType = 'drink' | 'eat' | 'fun';
@@ -40,7 +41,7 @@ const CategoryBar: React.FC<CategoryBarProps> = ({ categorieItems, handleCategor
         </div>
         <Link to="/premium" style={{ textDecoration: "none" }}>
           <div className="premium-member">
-            Reservé aux membres <FontAwesomeIcon icon="fa-solid fa-lock" />
+            Reservé aux membres <FontAwesomeIcon icon={faLock} />
           </div>
         </Link>
       </div>
