@@ -284,7 +284,7 @@ export const searchLocations = async (
 ): Promise<void> => {
   try {
     const response = await axios.get<LocationResponse[]>(
-      `${BASE_URL}/search?q=${encodeURIComponent(searchQuery)}`
+      `${BASE_URL}/search?query=${encodeURIComponent(searchQuery)}`
     );
 
     if (response.status === 200) {

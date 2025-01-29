@@ -1,15 +1,18 @@
 import { useEffect, useContext, useState } from "react";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { MyContext } from "../context/myContext";
 import { fetchDataSelectedItem } from "../services/fetchDataItems";
-import { editPhotosForm, deletePhoto } from "../services/sendForm";
+import { deletePhoto } from "../services/sendForm";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import KeywordsModal from "../components/modals/KeywordsModal";
 import FiltersModal from "../components/modals/FiltersModal";
 import AddressModal from "../components/modals/AddressModal";
 import DescriptionModal from "../components/modals/DescriptionModal";
+import ImageEditModal from "../components/modals/ImageEditModal";
 import { getPlaceSchedule } from "../services/askSchedule";
 import { formatInstagramUsername } from "../utils/formatInstagramUsername";
+import OpeningStatus from "../components/selectedLocation/OpeningStatus";
+import { handleFunc } from "../utils/handleFunc";
 
 const SelectedLocation = () => {
   const { idLocation } = useParams();
@@ -33,47 +36,22 @@ const SelectedLocation = () => {
 
   const navigate = useNavigate();
 
-  const handleToggleModal = () => {
-    setShowModal(!showModal);
-  };
-
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setSelectedFile(file);
-      const previewUrl = URL.createObjectURL(file);
-      setPreviewImage(previewUrl);
-    }
-  };
-
-  const handleSubmit = () => {
-    if (!selectedFile) {
-      alert("Veuillez sélectionner une image avant de soumettre.");
-      return;
-    }
-
-    editPhotosForm(idLocation, selectedFile);
-    console.log("Image envoyée :", selectedFile);
-
-    setSelectedFile(null);
-    setPreviewImage(null);
-    setShowModal(false);
-  };
-
-  const handleAddressUpdate = (newAddress, newPostalCode) => {
-    setSelectedItem({
-      ...selectedItem,
-      locationAddress: newAddress,
-      postalCode: newPostalCode,
-    });
-  };
-
-  const handleDescriptionUpdate = (newDescription) => {
-    setSelectedItem({
-      ...selectedItem,
-      locationDescription: newDescription,
-    });
-  };
+  const {
+    handleToggleModal,
+    handleFileChange,
+    handleSubmit,
+    handleAddressUpdate,
+    handleDescriptionUpdate,
+  } = handleFunc({
+    showModal,
+    setShowModal,
+    setSelectedFile,
+    setPreviewImage,
+    selectedFile,
+    idLocation,
+    selectedItem,
+    setSelectedItem,
+  });
 
   useEffect(() => {
     setSelectedItem("");
@@ -106,7 +84,6 @@ const SelectedLocation = () => {
     <div className="selected-container">
       <div className="selected-box">
         <div className="about">
-          {/* TODO: Extraire en composant AdminEditButtons */}
           {adminLogin && (
             <AdminEditButtons
               setIsKeywordsModalOpen={setIsKeywordsModalOpen}
@@ -114,7 +91,6 @@ const SelectedLocation = () => {
             />
           )}
 
-          {/* TODO: Extraire en composant LocationHeader */}
           <h3>{selectedItem.locationName}</h3>
           <p>{selectedItem.locationDescription}</p>
           {adminLogin && (
@@ -126,7 +102,6 @@ const SelectedLocation = () => {
             </div>
           )}
 
-          {/* TODO: Extraire en composant LocationAddress */}
           <p className="icon-box">
             <span>
               <FontAwesomeIcon
@@ -137,24 +112,8 @@ const SelectedLocation = () => {
             <span>{`${selectedItem.locationAddress}, ${selectedItem.postalCode}`}</span>
           </p>
 
-          {/* TODO: Extraire en composant OpeningStatus */}
-          <p className="layer-box">
-            <span>
-              <FontAwesomeIcon
-                className="fa-layer-icon"
-                icon="fa-regular fa-clock"
-              />
-              {schedule && schedule.status === "not_found"
-                ? "Indisponible"
-                : schedule &&
-                  schedule.opening_hours &&
-                  schedule.opening_hours.open_now
-                ? `Ouvert actuellement`
-                : "Fermé actuellement"}
-            </span>
-          </p>
+          <OpeningStatus schedule={schedule} />
 
-          {/* TODO: Extraire en composant InstagramLink */}
           <div className="insta-title">
             <FontAwesomeIcon
               className="fa-instagram-icon"
@@ -182,7 +141,6 @@ const SelectedLocation = () => {
 
           <div className="line"></div>
 
-          {/* TODO: Extraire en composant LocationTips */}
           <div className="tips">
             <h4>Conseils</h4>
             <ul>
@@ -196,7 +154,6 @@ const SelectedLocation = () => {
             </ul>
           </div>
 
-          {/* TODO: Extraire en composant PremiumContent */}
           <div className="reviews">
             <div>
               <FontAwesomeIcon
@@ -212,7 +169,6 @@ const SelectedLocation = () => {
             </div>
           </div>
 
-          {/* TODO: Extraire en composant EditModals */}
           <KeywordsModal
             isOpen={isKeywordsModalOpen}
             onClose={() => setIsKeywordsModalOpen(false)}
@@ -255,43 +211,15 @@ const SelectedLocation = () => {
         </div>
       </div>
 
-      {/* TODO: Extraire en composant ImageEditModal */}
       {showModal && (
-        <div className="modal-overlay" onClick={handleToggleModal}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <h2>Éditer l'emplacement</h2>
-            <p>Contenu de la modale ici</p>
-
-            <input
-              type="file"
-              accept="image/*"
-              onChange={handleFileChange}
-              style={{ width: "100%", padding: "10px", marginBottom: "10px" }}
-            />
-
-            {previewImage && (
-              <div className="image-preview">
-                <img
-                  src={previewImage}
-                  alt="Prévisualisation"
-                  style={{
-                    maxWidth: "100%",
-                    maxHeight: "300px",
-                    marginBottom: "10px",
-                  }}
-                />
-              </div>
-            )}
-
-            <button onClick={handleSubmit} style={{ marginRight: "10px" }}>
-              Envoyer
-            </button>
-            <button onClick={handleToggleModal}>Fermer</button>
-          </div>
-        </div>
+        <ImageEditModal
+          onClose={handleToggleModal}
+          onSubmit={handleSubmit}
+          handleFileChange={handleFileChange}
+          previewImage={previewImage}
+        />
       )}
 
-      {/* TODO: Extraire en composant LocationGallery */}
       <div className="img-box">
         <div className="img1">
           {adminLogin && (
