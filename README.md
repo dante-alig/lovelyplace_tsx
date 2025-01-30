@@ -28,6 +28,7 @@ LovelyPlace est une application web interactive qui vous aide à découvrir les 
 - Google Maps API pour la géolocalisation
 - Font Awesome pour les icônes
 - CSS personnalisé pour le style
+- Stripe pour le paiement
 
 ## 💻 Prérequis
 
@@ -41,7 +42,7 @@ LovelyPlace est une application web interactive qui vous aide à découvrir les 
 1. Clonez le repository
 
 ```bash
-git clone [https://github.com/dante-alig/portfolio_lovelyplace3.git]
+git clone [https://github.com/dante-alig/lovelyplace_tsx.git]
 cd my-react-app
 ```
 
@@ -67,10 +68,6 @@ npm run dev
 ## ⚠️ Note Importante
 
 L'application est actuellement optimisée pour une utilisation sur ordinateur. Une version mobile sera disponible dans les prochaines mises à jour.
-
-## 📝 Licence
-
-Ce projet est sous licence MIT. Voir le fichier `LICENSE` pour plus de détails.
 
 ## 👥 Contact
 

@@ -101,7 +101,6 @@ p {
   width: 60%;
   line-height: 30px;
   text-align: center;
-  /* font-weight: 100; */
 }
 
 .header-box2 button {
@@ -780,7 +779,6 @@ p {
 .item-container {
   width: 276px;
   font-size: 14px;
-  /* overflow: hidden; */
 }
 
 .item-title {
@@ -1556,113 +1554,6 @@ button {
   color: #999;
 }
 
-/* Media Queries */
-@media screen and (max-width: 1550px) {
-  .header-container,
-  .header-container-location {
-    width: 90%;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .header-container,
-  .header-container-location {
-    flex-direction: column;
-    padding: 20px 10px;
-  }
-
-  .header-box2 p {
-    width: 90%;
-    font-size: 16px;
-    line-height: 24px;
-  }
-
-  .header-box2 button {
-    width: 90%;
-    max-width: 350px;
-  }
-
-  .header-profil {
-    margin-top: 20px;
-  }
-
-  .modal-content {
-    width: 95%;
-    padding: 15px;
-  }
-
-  .modal-saison-container {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .fun {
-    width: 100%;
-    margin: 5px 0;
-  }
-}
-
-@media screen and (max-width: 480px) {
-  h3,
-  h4 {
-    font-size: 20px;
-  }
-
-  h5 {
-    font-size: 16px;
-  }
-
-  .header-box2 p {
-    font-size: 14px;
-    line-height: 22px;
-  }
-
-  .header-profil {
-    width: 140px;
-  }
-
-  .header-profil p {
-    font-size: 13px;
-  }
-
-  .modal-body {
-    padding-right: 5px;
-  }
-}
-
-.mobile-notice {
-  display: none;
-}
-
-@media screen and (max-width: 1024px) {
-  .home-container > *:not(.mobile-notice) {
-    display: none !important;
-  }
-
-  .mobile-notice {
-    display: flex;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    background-color: white;
-    z-index: 9999;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    text-align: center;
-  }
-
-  .mobile-notice p {
-    font-size: 24px;
-    line-height: 1.5;
-    max-width: 600px;
-    color: #000;
-    font-weight: 500;
-  }
-}
-
 /* Styles pour la page Premium */
 
 .premium-container {
@@ -1898,4 +1789,113 @@ button {
 .bottom {
   width: 100%;
   height: 200px;
+}
+
+/* ------------------------------------------RESPONSIVE------------------------------------------ */
+
+/* Media Queries */
+@media screen and (max-width: 1550px) {
+  .header-container,
+  .header-container-location {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .header-container,
+  .header-container-location {
+    flex-direction: column;
+    padding: 20px 10px;
+  }
+
+  .header-box2 p {
+    width: 90%;
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .header-box2 button {
+    width: 90%;
+    max-width: 350px;
+  }
+
+  .header-profil {
+    margin-top: 20px;
+  }
+
+  .modal-content {
+    width: 95%;
+    padding: 15px;
+  }
+
+  .modal-saison-container {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .fun {
+    width: 100%;
+    margin: 5px 0;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  h3,
+  h4 {
+    font-size: 20px;
+  }
+
+  h5 {
+    font-size: 16px;
+  }
+
+  .header-box2 p {
+    font-size: 14px;
+    line-height: 22px;
+  }
+
+  .header-profil {
+    width: 140px;
+  }
+
+  .header-profil p {
+    font-size: 13px;
+  }
+
+  .modal-body {
+    padding-right: 5px;
+  }
+}
+
+.mobile-notice {
+  display: none;
+}
+
+@media screen and (max-width: 1024px) {
+  .home-container > *:not(.mobile-notice) {
+    display: none !important;
+  }
+
+  .mobile-notice {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: white;
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    text-align: center;
+  }
+
+  .mobile-notice p {
+    font-size: 24px;
+    line-height: 1.5;
+    max-width: 600px;
+    color: #000;
+    font-weight: 500;
+  }
 }
