@@ -25,13 +25,13 @@ h5 {
 }
 
 a {
-  color: #000; /* Remplace #000 par la couleur de ton choix */
-  text-decoration: none; /* Enlève la ligne de soulignement */
+  color: #000;
+  text-decoration: none;
 }
 
 a:visited {
-  color: #000; /* Remplace #000 par la couleur de ton choix pour les liens visités */
-  text-decoration: none; /* Enlève la ligne de soulignement */
+  color: #000;
+  text-decoration: none;
 }
 
 p {
@@ -675,10 +675,6 @@ p {
   color: white;
   border-radius: 5px;
 }
-
-/* .modal-filter-content button:last-child {
-  background-color: #ccc;
-} */
 
 /* Styles pour les filtres */
 .filters-container {
@@ -1523,7 +1519,6 @@ button {
   display: none;
 }
 
-/* Supprimer les styles de recherche */
 .search-container,
 .search-input-wrapper,
 .search-loading,
