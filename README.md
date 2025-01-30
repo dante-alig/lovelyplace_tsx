@@ -2,6 +2,8 @@
 
 LovelyPlace est une application web interactive qui vous aide à découvrir les meilleurs endroits à Paris pour boire un verre, manger ou vous divertir. Avec une interface intuitive et des filtres personnalisés, trouvez facilement les lieux qui correspondent à vos envies.
 
+## ⚠️ **ATTENTION** : Ce repository contient uniquement la partie frontend de l'application. La partie backend est disponible dans un repository séparé sur mon GitHub disponible ici : [https://github.com/dante-alig/back-lovelyplace-north.git]
+
 ## 🌟 Fonctionnalités
 
 - **Catégories Principales**
