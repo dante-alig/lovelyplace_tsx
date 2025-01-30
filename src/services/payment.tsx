@@ -18,7 +18,7 @@ export const handleSubscription = async (): Promise<void> => {
 
     console.log("Envoi de la requête au serveur...");
     const response = await fetch(
-      "http://site--back-lovelyplace-main--dqd24mcv82s5.code.run",
+      "https://site--back-lovelyplace-main--dqd24mcv82s5.code.run",
       {
         method: "POST",
         headers: {

@@ -15,7 +15,7 @@ export const getPlaceSchedule = async (
   postalCode: string,
   setSchedule: SetScheduleFunction
 ): Promise<Schedule> => {
-  const BASE_URL = "http://site--back-lovelyplace-main--dqd24mcv82s5.code.run";
+  const BASE_URL = "https://site--back-lovelyplace-main--dqd24mcv82s5.code.run";
   try {
     const formattedAddress = formatAddressForSchedule(
       locationName,
