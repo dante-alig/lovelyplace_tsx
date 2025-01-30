@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 
-const BASE_URL = "https://site--back-lovelyplace-main--dqd24mcv82s5.code.run";
+const BASE_URL = "http://site--back-lovelyplace-main--dqd24mcv82s5.code.run";
 
 interface LocationItem {
   _id: string;
@@ -27,7 +27,7 @@ export const fetchDataItems = async (
     const queryString = filterParams
       ? new URLSearchParams(filterParams as Record<string, string>).toString()
       : "";
-    const url = `${BASE_URL}/${categorieItems}${
+    const url = `${BASE_URL}/categories/${categorieItems}${
       queryString ? `?${queryString}` : ""
     }`;
 
@@ -49,7 +49,7 @@ export const fetchDataSelectedItem = async (
 ): Promise<LocationItem | null> => {
   try {
     const response = await axios.get<LocationItem>(
-      `${BASE_URL}/items/${idLocation}`
+      `${BASE_URL}/location/items/${idLocation}`
     );
     const location = response.data;
 

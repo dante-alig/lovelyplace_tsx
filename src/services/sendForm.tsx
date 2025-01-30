@@ -1,7 +1,7 @@
-import React from 'react';
+import React from "react";
 import axios, { AxiosError } from "axios";
 
-const BASE_URL = "https://site--portfolio-lovelyplace-backend--dqd24mcv82s5.code.run";
+const BASE_URL = "http://site--back-lovelyplace-main--dqd24mcv82s5.code.run";
 
 interface LocationData {
   locationName: string;
@@ -27,7 +27,9 @@ interface LocationResponse {
   [key: string]: any;
 }
 
-type SetItemsFunction = React.Dispatch<React.SetStateAction<LocationResponse[]>>;
+type SetItemsFunction = React.Dispatch<
+  React.SetStateAction<LocationResponse[]>
+>;
 
 export const sendForm = async ({
   locationName,
@@ -42,9 +44,14 @@ export const sendForm = async ({
   keywords,
   filters,
   postalCode,
-  placeCategory
+  placeCategory,
 }: LocationData): Promise<void> => {
-  if (!locationName || !locationAddress || !locationDescription || !priceRange) {
+  if (
+    !locationName ||
+    !locationAddress ||
+    !locationDescription ||
+    !priceRange
+  ) {
     alert("Vous devez remplir tous les champs obligatoires.");
     return;
   }
@@ -55,7 +62,9 @@ export const sendForm = async ({
     typeof filters !== "object" ||
     !Array.isArray(keywords)
   ) {
-    alert("Les champs mediaLink, hours, filters, et keywords doivent être des objets ou des tableaux.");
+    alert(
+      "Les champs mediaLink, hours, filters, et keywords doivent être des objets ou des tableaux."
+    );
     return;
   }
 
@@ -82,11 +91,15 @@ export const sendForm = async ({
       });
     }
 
-    const response = await axios.post<LocationResponse>(`${BASE_URL}/location`, formData, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    });
+    const response = await axios.post<LocationResponse>(
+      `${BASE_URL}location/save`,
+      formData,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    );
 
     console.log("Réponse du serveur:", response.data);
     alert("Données enregistrées avec succès !");
@@ -141,7 +154,7 @@ export const editPhotosForm = async (
     };
 
     const response = await axios.put<LocationResponse>(
-      `${BASE_URL}/items/${idLocation}`,
+      `${BASE_URL}location/items/${idLocation}`,
       formData,
       config
     );
@@ -160,7 +173,7 @@ export const deletePhoto = async (
 ): Promise<string[]> => {
   try {
     const response = await axios.delete<LocationResponse>(
-      `${BASE_URL}/items/${idLocation}/photo`,
+      `${BASE_URL}location/items/${idLocation}/photo`,
       {
         data: { photoUrl },
         headers: {
@@ -182,7 +195,7 @@ export const deletePhoto = async (
 
 export const updateKeywords = async (
   idLocation: string,
-  action: 'add' | 'remove',
+  action: "add" | "remove",
   keywords: string[]
 ): Promise<LocationResponse> => {
   try {
@@ -207,7 +220,7 @@ export const updateKeywords = async (
 
 export const updateFilters = async (
   idLocation: string,
-  action: 'add' | 'remove',
+  action: "add" | "remove",
   filters: Record<string, string[]>
 ): Promise<LocationResponse> => {
   try {

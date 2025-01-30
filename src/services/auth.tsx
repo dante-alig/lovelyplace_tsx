@@ -1,13 +1,14 @@
-import React from 'react';
-
-const BASE_URL = "https://site--back-lovelyplace-main--dqd24mcv82s5.code.run";
+const BASE_URL = "http://site--back-lovelyplace-main--dqd24mcv82s5.code.run";
 
 interface AuthResponse {
   token: string;
   message?: string;
 }
 
-export const signup = async (email: string, password: string): Promise<AuthResponse> => {
+export const signup = async (
+  email: string,
+  password: string
+): Promise<AuthResponse> => {
   try {
     const response = await fetch(`${BASE_URL}/user/signup`, {
       method: "POST",
@@ -37,7 +38,10 @@ export const signup = async (email: string, password: string): Promise<AuthRespo
   }
 };
 
-export const login = async (email: string, password: string): Promise<AuthResponse> => {
+export const login = async (
+  email: string,
+  password: string
+): Promise<AuthResponse> => {
   try {
     const response = await fetch(`${BASE_URL}/user/login`, {
       method: "POST",

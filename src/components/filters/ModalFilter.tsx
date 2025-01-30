@@ -1,10 +1,14 @@
-import React, { useContext, useRef } from "react";
+import React, { useContext } from "react";
 import { MyContext } from "../../context/myContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationCrosshairs } from "@fortawesome/free-solid-svg-icons";
 
-type CategoryType = 'drink' | 'eat' | 'fun' | 'filter-nearby';
-type PlaceCategory = 'prendre_un_verre' | 'manger_ensemble' | 'partager_une_activité' | null;
+type CategoryType = "drink" | "eat" | "fun" | "filter-nearby";
+type PlaceCategory =
+  | "prendre_un_verre"
+  | "manger_ensemble"
+  | "partager_une_activité"
+  | null;
 
 interface FilterParams {
   address?: string;
@@ -27,7 +31,10 @@ interface MyContextType {
   filterParams: FilterParams | null;
 }
 
-const ModalFilter: React.FC<ModalFilterProps> = ({ modalRef, setShowModal }) => {
+const ModalFilter: React.FC<ModalFilterProps> = ({
+  modalRef,
+  setShowModal,
+}) => {
   const {
     address,
     setAddress,
@@ -76,7 +83,9 @@ const ModalFilter: React.FC<ModalFilterProps> = ({ modalRef, setShowModal }) => 
             type="text"
             placeholder="entrer une adresse"
             value={address}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setAddress(e.target.value)}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setAddress(e.target.value)
+            }
           />
         </div>
         <div className="button-box">

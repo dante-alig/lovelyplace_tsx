@@ -1,7 +1,8 @@
-import React from 'react';
 import { loadStripe, Stripe } from "@stripe/stripe-js";
 
-const stripePromise: Promise<Stripe | null> = loadStripe("pk_live_hi4DC3a4O3XqCF6pG12n2wu7");
+const stripePromise: Promise<Stripe | null> = loadStripe(
+  "pk_live_hi4DC3a4O3XqCF6pG12n2wu7"
+);
 
 interface CheckoutSessionResponse {
   id: string;
@@ -14,10 +15,10 @@ export const handleSubscription = async (): Promise<void> => {
     if (!stripe) {
       throw new Error("Stripe n'a pas pu être initialisé");
     }
-    
+
     console.log("Envoi de la requête au serveur...");
     const response = await fetch(
-      "https://site--back-lovelyplace-main--dqd24mcv82s5.code.run/api/create-checkout-session",
+      "http://site--back-lovelyplace-main--dqd24mcv82s5.code.run",
       {
         method: "POST",
         headers: {
